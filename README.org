@@ -1,44 +1,126 @@
-# Note: When plotting to PDF, use the function cairo_pdf() instead of pdf()
-# to get greek characters in the results.
+#+PROPERTY: header-args:R :session *R*
 
-# 50% credible intervals after seeing 6 successes out of 9 trials,
-# with flat prior:
+* R functions for calculating and plotting binomial credible intervals
+
+Note: When plotting to PDF, use the function ~cairo_pdf()~ instead of ~pdf()~ to get greek characters in the results.
+
+50% credible intervals after seeing 6 successes out of 9 trials, with flat prior:
+
+#+BEGIN_SRC R :exports both :results value output
+source("binomial_credible_intervals.R")
+
 binomial.hpdi(n.successes=6, n.trials=9, prior.alpha=1, prior.beta=1, prob=0.5)
+#+END_SRC
+
+#+RESULTS:
+:      |0.5      0.5| 
+: 0.5643603 0.7593849 
+
+#+BEGIN_SRC R :exports both :results output graphics :file hpdi1.png
 plot.binomial.hpdi(6, 9, 1, 1, 0.5)
+#+END_SRC
+
+#+RESULTS:
+[[file:hpdi1.png]]
+
+#+BEGIN_SRC R :exports both :results value output
 binomial.pi(6, 9, 1, 1, 0.5)
+#+END_SRC
+
+#+BEGIN_SRC R :exports both :results output graphics :file pi1.png
 plot.binomial.pi(6, 9, 1, 1, 0.5)
+#+END_SRC
 
-# 50% credible intervals after seeing 6 successes out of 9 trials,
-# with prior assuming one earlier success and one earlier failure:
+#+RESULTS:
+[[file:pi1.png]]
+
+50% credible intervals after seeing 6 successes out of 9 trials, with prior assuming one earlier success and one earlier failure:
+
+#+BEGIN_SRC R :exports both :results value output
 binomial.hpdi(6, 9, 2, 2, 0.5)
+#+END_SRC
+
+#+BEGIN_SRC R :exports both :results output graphics :file hpdi2.png
 plot.binomial.hpdi(6, 9, 2, 2, 0.5)
+#+END_SRC
+
+#+RESULTS:
+[[file:hpdi2.png]]
+
+#+BEGIN_SRC R :exports both :results value output
 binomial.pi(6, 9, 2, 2, 0.5)
+#+END_SRC
+
+#+BEGIN_SRC R :exports both :results output graphics :file pi2.png
 plot.binomial.pi(6, 9, 2, 2, 0.5)
+#+END_SRC
 
-# 50% credible intervals after seeing 7 successes our of 11 trials
-# (equivalent to 6/9 with prior alpha=2, beta=2):
+#+RESULTS:
+[[file:pi2.png]]
+
+50% credible intervals after seeing 7 successes our of 11 trials (equivalent to 6/9 with prior alpha=2, beta=2):
+
+#+BEGIN_SRC R :exports both :results value output
 binomial.hpdi(7, 11, 1, 1, 0.5)
+#+END_SRC
+
+#+BEGIN_SRC R :exports both :results output graphics :file hpdi3.png
 plot.binomial.hpdi(7, 11, 1, 1, 0.5)
+#+END_SRC
+
+#+RESULTS:
+[[file:hpdi3.png]]
+
+#+BEGIN_SRC R :exports both :results value output
 binomial.pi(7, 11, 1, 1, 0.5)
+#+END_SRC
+
+#+BEGIN_SRC R :exports both :results output graphics :file pi3.png
 plot.binomial.pi(7, 11, 1, 1, 0.5)
+#+END_SRC
 
-# 50% credible intervals after seeing 1 successes out of 2 trials,
-# with flat prior:
+#+RESULTS:
+[[file:pi3.png]]
+
+50% credible intervals after seeing 1 successes out of 2 trials, with
+flat prior:
+
+#+BEGIN_SRC R :exports both :results value output
 binomial.hpdi(1, 1, 1, 1, 0.5)
+#+END_SRC
+
+#+BEGIN_SRC R :exports both :results output graphics :file hpdi4.png
 plot.binomial.hpdi(1, 1, 1, 1, 0.5)
+#+END_SRC
+
+#+RESULTS:
+[[file:hpdi4.png]]
+
+#+BEGIN_SRC R :exports both :results value output
 binomial.pi(1, 1, 1, 1, 0.5)
+#+END_SRC
+
+#+BEGIN_SRC R :exports both :results output graphics :file pi4.png
 plot.binomial.pi(1, 1, 1, 1, 0.5)
+#+END_SRC
 
-# Probability of parameter being larger than 0.5 after seeing 6
-# successes out of 9 trials with flat prior:
+#+RESULTS:
+[[file:pi4.png]]
+
+Probability of parameter being larger than 0.5 after seeing 6 successes out of 9 trials with flat prior:
+
+#+BEGIN_SRC R :exports both :results value output
 binomial.pgt(6, 9, 1, 1, 0.5)
+#+END_SRC
 
-# Probability of parameter being larger than 0.5 after seeing 6
-# successes out of 9 trials with prior assuming one earlier success
-# and one earlier failure:
+Probability of parameter being larger than 0.5 after seeing 6 successes out of 9 trials with prior assuming one earlier success and one earlier failure:
+
+#+BEGIN_SRC R :exports both :results value output
 binomial.pgt(6, 9, 2, 2, 0.5)
+#+END_SRC
 
-# Probability of parameter being larger than 0.5 after seeing 7
-# successes our of 11 trials (equivalent to 6/9 with prior alpha=2,
-# beta=2):
+Probability of parameter being larger than 0.5 after seeing 7 successes our of 11 trials (equivalent to 6/9 with prior alpha=2, beta=2):
+
+#+BEGIN_SRC R :exports both :results value output
 binomial.pgt(7, 11, 1, 1, 0.5)
+#+END_SRC
