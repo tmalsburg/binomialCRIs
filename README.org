@@ -32,7 +32,7 @@ plot.binomial.pi(6, 9, 1, 1, 0.5)
 #+END_SRC
 
 #+RESULTS:
-[[file:pi1.png]]
+[[https://gist.githubusercontent.com/tmalsburg/202132d78467b1982e45295f0141492c/raw/10f7efccdf79f5ef905afdba5462312122a6e12f/pi1.png]]
 
 50% credible intervals after seeing 6 successes out of 9 trials, with prior assuming one earlier success and one earlier failure:
 
@@ -45,7 +45,7 @@ plot.binomial.hpdi(6, 9, 2, 2, 0.5)
 #+END_SRC
 
 #+RESULTS:
-[[file:hpdi2.png]]
+[[https://gist.githubusercontent.com/tmalsburg/202132d78467b1982e45295f0141492c/raw/10f7efccdf79f5ef905afdba5462312122a6e12f/hpdi2.png]]
 
 #+BEGIN_SRC R :exports both :results value output
 binomial.pi(6, 9, 2, 2, 0.5)
@@ -56,7 +56,7 @@ plot.binomial.pi(6, 9, 2, 2, 0.5)
 #+END_SRC
 
 #+RESULTS:
-[[file:pi2.png]]
+[[https://gist.githubusercontent.com/tmalsburg/202132d78467b1982e45295f0141492c/raw/10f7efccdf79f5ef905afdba5462312122a6e12f/pi2.png]]
 
 50% credible intervals after seeing 7 successes our of 11 trials (equivalent to 6/9 with prior alpha=2, beta=2):
 
@@ -69,7 +69,7 @@ plot.binomial.hpdi(7, 11, 1, 1, 0.5)
 #+END_SRC
 
 #+RESULTS:
-[[file:hpdi3.png]]
+[[https://gist.githubusercontent.com/tmalsburg/202132d78467b1982e45295f0141492c/raw/10f7efccdf79f5ef905afdba5462312122a6e12f/hpdi3.png]]
 
 #+BEGIN_SRC R :exports both :results value output
 binomial.pi(7, 11, 1, 1, 0.5)
@@ -80,7 +80,7 @@ plot.binomial.pi(7, 11, 1, 1, 0.5)
 #+END_SRC
 
 #+RESULTS:
-[[file:pi3.png]]
+[[https://gist.githubusercontent.com/tmalsburg/202132d78467b1982e45295f0141492c/raw/10f7efccdf79f5ef905afdba5462312122a6e12f/pi3.png]]
 
 50% credible intervals after seeing 1 successes out of 2 trials, with
 flat prior:
@@ -94,7 +94,7 @@ plot.binomial.hpdi(1, 1, 1, 1, 0.5)
 #+END_SRC
 
 #+RESULTS:
-[[file:hpdi4.png]]
+[[https://gist.githubusercontent.com/tmalsburg/202132d78467b1982e45295f0141492c/raw/10f7efccdf79f5ef905afdba5462312122a6e12f/hpdi4.png]]
 
 #+BEGIN_SRC R :exports both :results value output
 binomial.pi(1, 1, 1, 1, 0.5)
@@ -105,7 +105,7 @@ plot.binomial.pi(1, 1, 1, 1, 0.5)
 #+END_SRC
 
 #+RESULTS:
-[[file:pi4.png]]
+[[https://gist.githubusercontent.com/tmalsburg/202132d78467b1982e45295f0141492c/raw/10f7efccdf79f5ef905afdba5462312122a6e12f/pi4.png]]
 
 Probability of parameter being larger than 0.5 after seeing 6 successes out of 9 trials with flat prior:
 
