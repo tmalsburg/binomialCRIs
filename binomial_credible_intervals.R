@@ -64,7 +64,26 @@ check.parameters <- function(n.successes, n.trials, prior.alpha, prior.beta) {
   stopifnot(prior.beta > 0)
 }
 
-# Plots posterior distribution (Beta) with given interval shaded:
+#' Plots posterior for the probability parameter underlying a
+#' binomially distributed outcome and shades an interval (if
+#' specified).
+#'
+#' @param n.successes number of successes.
+#' @param n.trials total number of trials.
+#' @param prior.alpha alpha parameter of the Beta distribution
+#'   defining the prior.  The default values alpha=1 and beta=1 define
+#'   a flat prior assigning equal probability density to all possible
+#'   parameter values.
+#' @param prior.beta beta parameter of the Beta distribution defining
+#'   the prior.  The default values alpha=1 and beta=1 define a flat
+#'   prior assigning equal probability density to all possible
+#'   parameter values.
+#' @param prob.lower the lower end point of the interval. Defaults to
+#'   0 if \code{prob.upper} is non-null.
+#' @param prob.upper the upper end point of the interval. Defaults to
+#'   1 if \code{prob.lower} is non-null.
+#' @return ggplot2 object.
+#' @author Titus von der Malsburg <malsburg@uni-potsdam.de>
 plot.binomial.cri <- function(n.successes, n.trials, prior.alpha=1, prior.beta=1, prob.lower=NULL, prob.upper=NULL) {
   
   check.parameters(n.successes, n.trials, prior.alpha, prior.beta)
@@ -99,8 +118,7 @@ plot.binomial.cri <- function(n.successes, n.trials, prior.alpha=1, prior.beta=1
          y="Posterior density",
          caption=paste("Data: successes=", n.successes, ", trials=",
                        n.trials, "\nPrior: Beta distribution with α=", prior.alpha,
-                       ", β=", prior.beta,
-                       p, sep=""))
+                       ", β=", prior.beta, p, sep=""))
   
 }
 
@@ -177,8 +195,8 @@ binomial.pi <- function(n.successes, n.trials, prior.alpha=1, prior.beta=1, prob
 }
 
 #' Calculates the posterior probability that the probability parameter
-#' underlying a binomially distributed outcome is larger than some
-#' threshold.
+#' underlying a binomially distributed outcome is in a specified
+#' interval.
 #'
 #' @param n.successes number of successes.
 #' @param n.trials total number of trials.
@@ -190,9 +208,10 @@ binomial.pi <- function(n.successes, n.trials, prior.alpha=1, prior.beta=1, prob
 #'   the prior.  The default values alpha=1 and beta=1 define a flat
 #'   prior assigning equal probability density to all possible
 #'   parameter values.
-#' @param prob the threshold.
-#' @return Posterior probability that the parameter value is larger
-#'   than the threshold \code{prob}.
+#' @param prob.lower the lower end point of the interval.
+#' @param prob.upper the upper end point of the interval.
+#' @return Posterior probability that the parameter value lies in the
+#'   specified interval.
 #' @author Titus von der Malsburg <malsburg@uni-potsdam.de>
 binomial.prob <- function(n.successes, n.trials, prior.alpha=1, prior.beta=1, prob.lower=0, prob.upper=1) {
   
