@@ -27,6 +27,10 @@ plot.binomial.hpdi(6, 9, 1, 1, 0.5)
 binomial.pi(6, 9, 1, 1, 0.5)
 #+END_SRC
 
+#+RESULTS:
+:      |0.5      0.5| 
+: 0.5423038 0.7391494
+
 #+BEGIN_SRC R :exports both :results output graphics :file pi1.png
 plot.binomial.pi(6, 9, 1, 1, 0.5)
 #+END_SRC
@@ -40,6 +44,10 @@ plot.binomial.pi(6, 9, 1, 1, 0.5)
 binomial.hpdi(6, 9, 2, 2, 0.5)
 #+END_SRC
 
+#+RESULTS:
+:      |0.5      0.5| 
+: 0.5419229 0.7242251
+
 #+BEGIN_SRC R :exports both :results output graphics :file hpdi2.png
 plot.binomial.hpdi(6, 9, 2, 2, 0.5)
 #+END_SRC
@@ -50,6 +58,10 @@ plot.binomial.hpdi(6, 9, 2, 2, 0.5)
 #+BEGIN_SRC R :exports both :results value output
 binomial.pi(6, 9, 2, 2, 0.5)
 #+END_SRC
+
+#+RESULTS:
+:      |0.5      0.5| 
+: 0.5269063 0.7101529
 
 #+BEGIN_SRC R :exports both :results output graphics :file pi2.png
 plot.binomial.pi(6, 9, 2, 2, 0.5)
@@ -64,6 +76,10 @@ plot.binomial.pi(6, 9, 2, 2, 0.5)
 binomial.hpdi(7, 11, 1, 1, 0.5)
 #+END_SRC
 
+#+RESULTS:
+:      |0.5      0.5| 
+: 0.5419229 0.7242251
+
 #+BEGIN_SRC R :exports both :results output graphics :file hpdi3.png
 plot.binomial.hpdi(7, 11, 1, 1, 0.5)
 #+END_SRC
@@ -74,6 +90,10 @@ plot.binomial.hpdi(7, 11, 1, 1, 0.5)
 #+BEGIN_SRC R :exports both :results value output
 binomial.pi(7, 11, 1, 1, 0.5)
 #+END_SRC
+
+#+RESULTS:
+:      |0.5      0.5| 
+: 0.5269063 0.7101529
 
 #+BEGIN_SRC R :exports both :results output graphics :file pi3.png
 plot.binomial.pi(7, 11, 1, 1, 0.5)
@@ -89,6 +109,10 @@ flat prior:
 binomial.hpdi(1, 1, 1, 1, 0.5)
 #+END_SRC
 
+#+RESULTS:
+:      |0.5      0.5| 
+: 0.7070744 0.9999771
+
 #+BEGIN_SRC R :exports both :results output graphics :file hpdi4.png
 plot.binomial.hpdi(1, 1, 1, 1, 0.5)
 #+END_SRC
@@ -99,6 +123,10 @@ plot.binomial.hpdi(1, 1, 1, 1, 0.5)
 #+BEGIN_SRC R :exports both :results value output
 binomial.pi(1, 1, 1, 1, 0.5)
 #+END_SRC
+
+#+RESULTS:
+:      |0.5      0.5| 
+: 0.5000000 0.8660254
 
 #+BEGIN_SRC R :exports both :results output graphics :file pi4.png
 plot.binomial.pi(1, 1, 1, 1, 0.5)
@@ -113,14 +141,23 @@ Probability of parameter being larger than 0.5 after seeing 6 successes out of 9
 binomial.pgt(6, 9, 1, 1, 0.5)
 #+END_SRC
 
+#+RESULTS:
+: [1] 0.828125
+
 Probability of parameter being larger than 0.5 after seeing 6 successes out of 9 trials with prior assuming one earlier success and one earlier failure:
 
 #+BEGIN_SRC R :exports both :results value output
 binomial.pgt(6, 9, 2, 2, 0.5)
 #+END_SRC
 
+#+RESULTS:
+: [1] 0.8061523
+
 Probability of parameter being larger than 0.5 after seeing 7 successes our of 11 trials (equivalent to 6/9 with prior alpha=2, beta=2):
 
 #+BEGIN_SRC R :exports both :results value output
 binomial.pgt(7, 11, 1, 1, 0.5)
 #+END_SRC
+
+#+RESULTS:
+: [1] 0.8061523
