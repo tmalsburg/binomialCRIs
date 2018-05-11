@@ -22,8 +22,10 @@ plot.binomial.hpdi <- function(n.successes, n.trials, prior.alpha=1, prior.beta=
   interval <- binomial.hpdi(n.successes, n.trials, prior.alpha, prior.beta, prob)
   
   plot.binomial.cri(interval, n.successes, n.trials, prior.alpha, prior.beta) +
-    labs(caption=paste("Data: successes=", n.successes, ", trials=", n.trials, "\nPrior: Beta distribution with α=", prior.alpha, ", β=", prior.beta, "\n", 100*prob, "% HPD interval: ", round(interval[1], 2), "--", round(interval[2], 2), sep=""))
-  
+    labs(caption=paste("Data: successes=", n.successes, ", trials=",
+                       n.trials, "\nPrior: Beta distribution with α=", prior.alpha,
+                       ", β=", prior.beta, "\n", 100*prob, "% HPD interval: ",
+                       round(interval[1], 2), "--", round(interval[2], 2), sep=""))
 }
 
 #' Plots posterior and percentile interval for the probability
@@ -47,8 +49,10 @@ plot.binomial.pi <- function(n.successes, n.trials, prior.alpha=1, prior.beta=1,
   interval <- binomial.pi(n.successes, n.trials, prior.alpha, prior.beta, prob)
   
   plot.binomial.cri(interval, n.successes, n.trials, prior.alpha, prior.beta) +
-    labs(caption=paste("Data: successes=", n.successes, ", trials=", n.trials, "\nPrior: Beta distribution with α=", prior.alpha, ", β=", prior.beta, "\n", 100*prob, "% precentile interval: ", round(interval[1], 2), "--", round(interval[2], 2), sep=""))
-  
+    labs(caption=paste("Data: successes=", n.successes, ", trials=",
+                       n.trials, "\nPrior: Beta distribution with α=", prior.alpha,
+                       ", β=", prior.beta, "\n", 100*prob, "% precentile interval: ",
+                       round(interval[1], 2), "--", round(interval[2], 2), sep=""))
 }
 
 # Plots posterior distribution (Beta) with given interval shaded:

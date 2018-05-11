@@ -1,3 +1,6 @@
+# Note: When plotting to PDF, use the function cairo_pdf() instead of pdf()
+# to get greek characters in the results.
+
 # 50% credible intervals after seeing 6 successes out of 9 trials,
 # with flat prior:
 binomial.hpdi(n.successes=6, n.trials=9, prior.alpha=1, prior.beta=1, prob=0.5)
