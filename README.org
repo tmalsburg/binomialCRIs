@@ -178,4 +178,4 @@ plot.binomial.cri(6, 9, 1, 1, 0.5, 0.75)
 #+END_SRC
 
 #+RESULTS:
-[[file:some_interval.png]]
+https://gist.githubusercontent.com/tmalsburg/202132d78467b1982e45295f0141492c/raw/10f7efccdf79f5ef905afdba5462312122a6e12f/some_interval.png
