@@ -179,3 +179,21 @@ plot.binomial.cri(6, 9, 1, 1, 0.5, 0.75)
 
 #+RESULTS:
 [[https://gist.githubusercontent.com/tmalsburg/202132d78467b1982e45295f0141492c/raw/cd619cb0ee3f6dafd96aedb47034dc3413734b6b/some_interval.png]]
+
+Probability of parameter being smaller than 0.5 after seeing 6 successes our of 9 trials:
+
+#+BEGIN_SRC R :exports both :results value output
+binomial.prob(6, 9, 1, 1, prob.upper=0.5)
+#+END_SRC
+
+#+RESULTS:
+: [1] 0.171875
+
+Plot:
+
+#+BEGIN_SRC R :exports both :results output graphics :file some_interval2.png
+plot.binomial.cri(6, 9, 1, 1, prob.upper=0.5)
+#+END_SRC
+
+#+RESULTS:
+[[file:some_interval2.png]]

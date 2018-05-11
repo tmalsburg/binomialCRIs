@@ -69,6 +69,9 @@ plot.binomial.cri <- function(n.successes, n.trials, prior.alpha=1, prior.beta=1
   
   check.parameters(n.successes, n.trials, prior.alpha, prior.beta)
   stopifnot(0 <= prob.lower & prob.lower <= prob.upper & prob.upper <= 1)
+
+  if (!is.null(prob.lower) & is.null(prob.upper)) prob.upper <- 1
+  if (!is.null(prob.upper) & is.null(prob.lower)) prob.lower <- 0
   
   alpha <- n.successes + prior.alpha
   beta  <- n.trials - n.successes + prior.beta
@@ -81,12 +84,23 @@ plot.binomial.cri <- function(n.successes, n.trials, prior.alpha=1, prior.beta=1
   y.interval <-   dens[p_grid >= prob.lower & p_grid <= prob.upper]
   x.interval <- x.interval[c(1, 1:length(x.interval), length(x.interval))]
   y.interval <- c(0, y.interval, 0)
-  
+
+  if (!is.null(prob.lower)) {
+    p <- binomial.prob(n.successes, n.trials, prior.alpha, prior.beta, prob.lower, prob.upper)
+    p <- paste("\nPr(θ in [", prob.lower, ",", prob.upper, "]): ", format(p, digits=2), sep="")
+  } else { 
+    p <- ""
+  }
+    
   ggplot(mapping=aes(x=p_grid, y=dens)) +
     geom_line() +
     geom_polygon(aes(x = x.interval, y = y.interval), alpha=0.5) +
     labs(x="θ",
-         y="Posterior density")
+         y="Posterior density",
+         caption=paste("Data: successes=", n.successes, ", trials=",
+                       n.trials, "\nPrior: Beta distribution with α=", prior.alpha,
+                       ", β=", prior.beta,
+                       p, sep=""))
   
 }
 
