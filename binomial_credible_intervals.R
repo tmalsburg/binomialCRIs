@@ -1,8 +1,8 @@
 
 library(ggplot2)
 
-#' Plots posterior and HPD interval for the probability parameter
-#' underlying a binomially distributed outcome.
+#' Plots the posterior distribution and specified HPD interval for the
+#' probability parameter underlying a binomially distributed outcome.
 #'
 #' @param n.successes number of successes.
 #' @param n.trials total number of trials.
@@ -28,8 +28,9 @@ plot.binomial.hpdi <- function(n.successes, n.trials, prior.alpha=1, prior.beta=
                        round(interval[1], 2), "--", round(interval[2], 2), sep=""))
 }
 
-#' Plots posterior and percentile interval for the probability
-#' parameter underlying a binomially distributed outcome.
+#' Plots the posterior distribution and specified percentile interval
+#' for the probability parameter underlying a binomially distributed
+#' outcome.
 #'
 #' @param n.successes number of successes.
 #' @param n.trials total number of trials.
@@ -64,9 +65,9 @@ check.parameters <- function(n.successes, n.trials, prior.alpha, prior.beta) {
   stopifnot(prior.beta > 0)
 }
 
-#' Plots posterior for the probability parameter underlying a
-#' binomially distributed outcome and shades an interval (if
-#' specified).
+#' Plots the posterior distribution and a specified interval (if
+#' defined) for the probability parameter underlying a binomially
+#' distributed outcome.
 #'
 #' @param n.successes number of successes.
 #' @param n.trials total number of trials.
