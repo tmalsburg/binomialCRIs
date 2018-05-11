@@ -138,7 +138,7 @@ plot.binomial.pi(1, 1, 1, 1, 0.5)
 Probability of parameter being larger than 0.5 after seeing 6 successes out of 9 trials with flat prior:
 
 #+BEGIN_SRC R :exports both :results value output
-binomial.pgt(6, 9, 1, 1, 0.5)
+binomial.prob(6, 9, 1, 1, prob.lower=0.5)
 #+END_SRC
 
 #+RESULTS:
@@ -147,17 +147,35 @@ binomial.pgt(6, 9, 1, 1, 0.5)
 Probability of parameter being larger than 0.5 after seeing 6 successes out of 9 trials with prior assuming one earlier success and one earlier failure:
 
 #+BEGIN_SRC R :exports both :results value output
-binomial.pgt(6, 9, 2, 2, 0.5)
+binomial.prob(6, 9, 2, 2, 0.5)
 #+END_SRC
 
 #+RESULTS:
 : [1] 0.8061523
 
-Probability of parameter being larger than 0.5 after seeing 7 successes our of 11 trials (equivalent to 6/9 with prior alpha=2, beta=2):
+Probability of parameter being smaller than 0.5 after seeing 6 successes out of 9 trials with prior assuming one earlier success and one earlier failure:
 
 #+BEGIN_SRC R :exports both :results value output
-binomial.pgt(7, 11, 1, 1, 0.5)
+binomial.prob(6, 9, 2, 2, prob.upper=0.5)
 #+END_SRC
 
 #+RESULTS:
-: [1] 0.8061523
+: [1] 0.1938477
+
+Probability of parameter being larger than 0.5 and smaller than 0.75 after seeing 6 successes our of 9 trials:
+
+#+BEGIN_SRC R :exports both :results value output
+binomial.prob(6, 9, 1, 1, 0.5, 0.75)
+#+END_SRC
+
+#+RESULTS:
+: [1] 0.6040001
+
+Plot the same interval:
+
+#+BEGIN_SRC R :exports both :results output graphics :file some_interval.png
+plot.binomial.cri(6, 9, 1, 1, 0.5, 0.75)
+#+END_SRC
+
+#+RESULTS:
+[[file:some_interval.png]]

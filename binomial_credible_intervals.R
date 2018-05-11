@@ -21,7 +21,7 @@ plot.binomial.hpdi <- function(n.successes, n.trials, prior.alpha=1, prior.beta=
   
   interval <- binomial.hpdi(n.successes, n.trials, prior.alpha, prior.beta, prob)
   
-  plot.binomial.cri(interval, n.successes, n.trials, prior.alpha, prior.beta) +
+  plot.binomial.cri(n.successes, n.trials, prior.alpha, prior.beta, interval[1], interval[2]) +
     labs(caption=paste("Data: successes=", n.successes, ", trials=",
                        n.trials, "\nPrior: Beta distribution with α=", prior.alpha,
                        ", β=", prior.beta, "\n", 100*prob, "% HPD interval: ",
@@ -48,7 +48,7 @@ plot.binomial.pi <- function(n.successes, n.trials, prior.alpha=1, prior.beta=1,
   
   interval <- binomial.pi(n.successes, n.trials, prior.alpha, prior.beta, prob)
   
-  plot.binomial.cri(interval, n.successes, n.trials, prior.alpha, prior.beta) +
+  plot.binomial.cri(n.successes, n.trials, prior.alpha, prior.beta, interval[1], interval[2]) +
     labs(caption=paste("Data: successes=", n.successes, ", trials=",
                        n.trials, "\nPrior: Beta distribution with α=", prior.alpha,
                        ", β=", prior.beta, "\n", 100*prob, "% precentile interval: ",
@@ -56,7 +56,7 @@ plot.binomial.pi <- function(n.successes, n.trials, prior.alpha=1, prior.beta=1,
 }
 
 # Plots posterior distribution (Beta) with given interval shaded:
-plot.binomial.cri <- function(interval, n.successes, n.trials, prior.alpha=1, prior.beta=1) {
+plot.binomial.cri <- function(n.successes, n.trials, prior.alpha=1, prior.beta=1, prob.lower=NULL, prob.upper=NULL) {
   
   alpha <- n.successes + prior.alpha
   beta  <- n.trials - n.successes + prior.beta
@@ -65,8 +65,8 @@ plot.binomial.cri <- function(interval, n.successes, n.trials, prior.alpha=1, pr
   dens   <- dbeta(p_grid, alpha, beta)
   
   # For plotting the interval:
-  x.interval <- p_grid[p_grid >= interval[1] & p_grid <= interval[2]]
-  y.interval <-   dens[p_grid >= interval[1] & p_grid <= interval[2]]
+  x.interval <- p_grid[p_grid >= prob.lower & p_grid <= prob.upper]
+  y.interval <-   dens[p_grid >= prob.lower & p_grid <= prob.upper]
   x.interval <- x.interval[c(1, 1:length(x.interval), length(x.interval))]
   y.interval <- c(0, y.interval, 0)
   
@@ -180,7 +180,7 @@ binomial.pi <- function(n.successes, n.trials, prior.alpha=1, prior.beta=1, prob
 #' @return Posterior probability that the parameter value is larger
 #'   than the threshold \code{prob}.
 #' @author Titus von der Malsburg <malsburg@uni-potsdam.de>
-binomial.pgt <- function(n.successes, n.trials, prior.alpha=1, prior.beta=1, prob=0.5) {
+binomial.prob <- function(n.successes, n.trials, prior.alpha=1, prior.beta=1, prob.lower=0, prob.upper=1) {
   
   stopifnot(n.successes == as.integer(n.successes))
   stopifnot(n.trials == as.integer(n.trials))
@@ -189,13 +189,14 @@ binomial.pgt <- function(n.successes, n.trials, prior.alpha=1, prior.beta=1, pro
   stopifnot(n.successes <= n.trials)
   stopifnot(prior.alpha > 0)
   stopifnot(prior.beta > 0)
-  stopifnot(prob >= 0 & prob <= 1)
+  stopifnot(prob.lower >= 0 & prob.lower <= 1)
+  stopifnot(prob.upper >= 0 & prob.upper <= 1)
+  stopifnot(prob.lower <= prob.upper)
   
   # Parameters for posterior distribution:
   alpha <- n.successes + prior.alpha
   beta  <- n.trials - n.successes + prior.beta
 
-  1 - pbeta(prob, alpha, beta)
+  pbeta(prob.upper, alpha, beta) - pbeta(prob.lower, alpha, β)
   
 }
-
