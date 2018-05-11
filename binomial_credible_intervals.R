@@ -55,8 +55,20 @@ plot.binomial.pi <- function(n.successes, n.trials, prior.alpha=1, prior.beta=1,
                        round(interval[1], 2), "--", round(interval[2], 2), sep=""))
 }
 
+check.parameters <- function(n.successes, n.trials, prior.alpha, prior.beta) {
+  stopifnot(n.successes == as.integer(n.successes))
+  stopifnot(n.trials == as.integer(n.trials))
+  stopifnot(0 <= n.successes & n.successes <= n.trials)
+  stopifnot(0 < n.trials)
+  stopifnot(prior.alpha > 0)
+  stopifnot(prior.beta > 0)
+}
+
 # Plots posterior distribution (Beta) with given interval shaded:
 plot.binomial.cri <- function(n.successes, n.trials, prior.alpha=1, prior.beta=1, prob.lower=NULL, prob.upper=NULL) {
+  
+  check.parameters(n.successes, n.trials, prior.alpha, prior.beta)
+  stopifnot(0 <= prob.lower & prob.lower <= prob.upper & prob.upper <= 1)
   
   alpha <- n.successes + prior.alpha
   beta  <- n.trials - n.successes + prior.beta
@@ -96,14 +108,8 @@ plot.binomial.cri <- function(n.successes, n.trials, prior.alpha=1, prior.beta=1
 #' @author Titus von der Malsburg <malsburg@uni-potsdam.de>
 binomial.hpdi <- function(n.successes, n.trials, prior.alpha=1, prior.beta=1, prob=0.9) {
 
-  stopifnot(n.successes == as.integer(n.successes))
-  stopifnot(n.trials == as.integer(n.trials))
-  stopifnot(n.trials > 0)
-  stopifnot(n.successes > 0)
-  stopifnot(n.successes <= n.trials)
-  stopifnot(prior.alpha > 0)
-  stopifnot(prior.beta > 0)
-  stopifnot(prob > 0 & prob <= 1)
+  check.parameters(n.successes, n.trials, prior.alpha, prior.beta)
+  stopifnot(0 < prob & prob <= 1)
   
   if(prob==1) {
     x <- c(0, 1)
@@ -142,14 +148,8 @@ binomial.hpdi <- function(n.successes, n.trials, prior.alpha=1, prior.beta=1, pr
 #' @author Titus von der Malsburg <malsburg@uni-potsdam.de>
 binomial.pi <- function(n.successes, n.trials, prior.alpha=1, prior.beta=1, prob=0.9) {
 
-  stopifnot(n.successes == as.integer(n.successes))
-  stopifnot(n.trials == as.integer(n.trials))
-  stopifnot(n.trials > 0)
-  stopifnot(n.successes > 0)
-  stopifnot(n.successes <= n.trials)
-  stopifnot(prior.alpha > 0)
-  stopifnot(prior.beta > 0)
-  stopifnot(prob >= 0 & prob <= 1)
+  check.parameters(n.successes, n.trials, prior.alpha, prior.beta)
+  stopifnot(0 <= prob & prob <= 1)
 
   # Parameters for posterior distribution:
   alpha <- n.successes + prior.alpha
@@ -182,21 +182,14 @@ binomial.pi <- function(n.successes, n.trials, prior.alpha=1, prior.beta=1, prob
 #' @author Titus von der Malsburg <malsburg@uni-potsdam.de>
 binomial.prob <- function(n.successes, n.trials, prior.alpha=1, prior.beta=1, prob.lower=0, prob.upper=1) {
   
-  stopifnot(n.successes == as.integer(n.successes))
-  stopifnot(n.trials == as.integer(n.trials))
-  stopifnot(n.trials > 0)
-  stopifnot(n.successes > 0)
-  stopifnot(n.successes <= n.trials)
-  stopifnot(prior.alpha > 0)
-  stopifnot(prior.beta > 0)
-  stopifnot(prob.lower >= 0 & prob.lower <= 1)
-  stopifnot(prob.upper >= 0 & prob.upper <= 1)
-  stopifnot(prob.lower <= prob.upper)
+  check.parameters(n.successes, n.trials, prior.alpha, prior.beta)
+  stopifnot(0 <= prob.lower & prob.lower <= prob.upper & prob.upper <= 1)
   
   # Parameters for posterior distribution:
   alpha <- n.successes + prior.alpha
   beta  <- n.trials - n.successes + prior.beta
 
-  pbeta(prob.upper, alpha, beta) - pbeta(prob.lower, alpha, β)
+  pbeta(prob.upper, alpha, beta) - pbeta(prob.lower, alpha, beta)
   
 }
+
