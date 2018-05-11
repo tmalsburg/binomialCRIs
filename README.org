@@ -2,7 +2,7 @@
 
 * R functions for calculating and plotting binomial credible intervals
 
-Note: When plotting to PDF, use the function ~cairo_pdf()~ instead of ~pdf()~ to get greek characters in the results.
+Note: When plotting to PDF, use the function ~cairo_pdf()~ instead of ~pdf()~ to get Greek characters in the results.
 
 50% credible intervals after seeing 6 successes out of 9 trials, with flat prior:
 
