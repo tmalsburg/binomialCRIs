@@ -21,7 +21,7 @@ plot.binomial.hpdi(6, 9, 1, 1, 0.5)
 #+END_SRC
 
 #+RESULTS:
-[[file:hpdi1.png]]
+[[https://gist.githubusercontent.com/tmalsburg/202132d78467b1982e45295f0141492c/raw/10f7efccdf79f5ef905afdba5462312122a6e12f/hpdi1.png]]
 
 #+BEGIN_SRC R :exports both :results value output
 binomial.pi(6, 9, 1, 1, 0.5)
