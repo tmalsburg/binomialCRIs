@@ -1,144 +1,149 @@
 #+PROPERTY: header-args:R :session *R*
 
-* R functions for calculating and plotting binomial credible intervals
+An R package for calculating and plotting binomial credible intervals.  It was written for educational purposes and not necessarily for serious use.  
 
+* Installation
+#+BEGIN_SRC R :exports both :results value output
+devtools::install_github("tmalsburg/binomialCRIs")
+#+END_SRC
+
+* Usage examples
 Note: When plotting to PDF, use the function ~cairo_pdf()~ instead of ~pdf()~ to get Greek characters in the results.
 
 50% credible intervals after seeing 6 successes out of 9 trials, with flat prior:
 
 #+BEGIN_SRC R :exports both :results value output
-source("binomial_credible_intervals.R")
+library(binomialCRIs)
 
-binomial.hpdi(n.successes=6, n.trials=9, prior.alpha=1, prior.beta=1, prob=0.5)
+binomial_hpdi(n_successes=6, n_trials=9, prior_shape1=1, prior_shape2=1, prob=0.5)
 #+END_SRC
 
 #+RESULTS:
 :      |0.5      0.5| 
-: 0.5643603 0.7593849 
+: 0.5643603 0.7593849
 
-#+BEGIN_SRC R :exports both :results output graphics :file hpdi1.png
-plot.binomial.hpdi(6, 9, 1, 1, 0.5)
+#+BEGIN_SRC R :exports both :results output graphics :file plots/hpdi1.png
+plot_binomial_hpdi(6, 9, 0.5)
 #+END_SRC
 
 #+RESULTS:
-[[https://gist.githubusercontent.com/tmalsburg/202132d78467b1982e45295f0141492c/raw/10f7efccdf79f5ef905afdba5462312122a6e12f/hpdi1.png]]
+[[file:plots/hpdi1.png]]
 
 #+BEGIN_SRC R :exports both :results value output
-binomial.pi(6, 9, 1, 1, 0.5)
+binomial_pi(6, 9, 0.5)
 #+END_SRC
 
 #+RESULTS:
 :      |0.5      0.5| 
 : 0.5423038 0.7391494
 
-#+BEGIN_SRC R :exports both :results output graphics :file pi1.png
-plot.binomial.pi(6, 9, 1, 1, 0.5)
+#+BEGIN_SRC R :exports both :results output graphics :file plots/pi1.png
+plot_binomial_pi(6, 9, 0.5)
 #+END_SRC
 
 #+RESULTS:
-[[https://gist.githubusercontent.com/tmalsburg/202132d78467b1982e45295f0141492c/raw/10f7efccdf79f5ef905afdba5462312122a6e12f/pi1.png]]
+[[file:plots/pi1.png]]
 
 50% credible intervals after seeing 6 successes out of 9 trials, with prior assuming one earlier success and one earlier failure:
 
 #+BEGIN_SRC R :exports both :results value output
-binomial.hpdi(6, 9, 2, 2, 0.5)
+binomial_hpdi(6, 9, 0.5, 2, 2)
 #+END_SRC
 
 #+RESULTS:
 :      |0.5      0.5| 
 : 0.5419229 0.7242251
 
-#+BEGIN_SRC R :exports both :results output graphics :file hpdi2.png
-plot.binomial.hpdi(6, 9, 2, 2, 0.5)
+#+BEGIN_SRC R :exports both :results output graphics :file plots/hpdi2.png
+plot_binomial_hpdi(6, 9, 0.5, 2, 2)
 #+END_SRC
 
 #+RESULTS:
-[[https://gist.githubusercontent.com/tmalsburg/202132d78467b1982e45295f0141492c/raw/10f7efccdf79f5ef905afdba5462312122a6e12f/hpdi2.png]]
+[[file:plots/hpdi2.png]]
 
 #+BEGIN_SRC R :exports both :results value output
-binomial.pi(6, 9, 2, 2, 0.5)
+binomial_pi(6, 9, 0.5, 2, 2)
 #+END_SRC
 
 #+RESULTS:
 :      |0.5      0.5| 
 : 0.5269063 0.7101529
 
-#+BEGIN_SRC R :exports both :results output graphics :file pi2.png
-plot.binomial.pi(6, 9, 2, 2, 0.5)
+#+BEGIN_SRC R :exports both :results output graphics :file plots/pi2.png
+plot_binomial_pi(6, 9, 0.5, 2, 2)
 #+END_SRC
 
 #+RESULTS:
-[[https://gist.githubusercontent.com/tmalsburg/202132d78467b1982e45295f0141492c/raw/10f7efccdf79f5ef905afdba5462312122a6e12f/pi2.png]]
+[[file:plots/pi2.png]]
 
-50% credible intervals after seeing 7 successes our of 11 trials (equivalent to 6/9 with prior alpha=2, beta=2):
+50% credible intervals after seeing 7 successes our of 11 trials (equivalent to 6/9 with prior_shape1=2, beta=2):
 
 #+BEGIN_SRC R :exports both :results value output
-binomial.hpdi(7, 11, 1, 1, 0.5)
+binomial_hpdi(7, 11, 0.5, 1, 1)
 #+END_SRC
 
 #+RESULTS:
 :      |0.5      0.5| 
 : 0.5419229 0.7242251
 
-#+BEGIN_SRC R :exports both :results output graphics :file hpdi3.png
-plot.binomial.hpdi(7, 11, 1, 1, 0.5)
+#+BEGIN_SRC R :exports both :results output graphics :file plots/hpdi3.png
+plot_binomial_hpdi(7, 11, 0.5)
 #+END_SRC
 
 #+RESULTS:
-[[https://gist.githubusercontent.com/tmalsburg/202132d78467b1982e45295f0141492c/raw/10f7efccdf79f5ef905afdba5462312122a6e12f/hpdi3.png]]
+[[file:plots/hpdi3.png]]
 
 #+BEGIN_SRC R :exports both :results value output
-binomial.pi(7, 11, 1, 1, 0.5)
+binomial_pi(7, 11, 0.5)
 #+END_SRC
 
 #+RESULTS:
 :      |0.5      0.5| 
 : 0.5269063 0.7101529
 
-#+BEGIN_SRC R :exports both :results output graphics :file pi3.png
-plot.binomial.pi(7, 11, 1, 1, 0.5)
+#+BEGIN_SRC R :exports both :results output graphics :file plots/pi3.png
+plot_binomial_pi(7, 11, 0.5)
 #+END_SRC
 
 #+RESULTS:
-[[https://gist.githubusercontent.com/tmalsburg/202132d78467b1982e45295f0141492c/raw/10f7efccdf79f5ef905afdba5462312122a6e12f/pi3.png]]
+[[file:plots/pi3.png]]
 
-50% credible intervals after seeing 1 successes out of 2 trials, with
-flat prior:
+50% credible intervals after seeing 1 successes out of 2 trials, with flat prior:
 
 #+BEGIN_SRC R :exports both :results value output
-binomial.hpdi(1, 1, 1, 1, 0.5)
+binomial_hpdi(1, 1, 0.5)
 #+END_SRC
 
 #+RESULTS:
 :      |0.5      0.5| 
 : 0.7070744 0.9999771
 
-#+BEGIN_SRC R :exports both :results output graphics :file hpdi4.png
-plot.binomial.hpdi(1, 1, 1, 1, 0.5)
+#+BEGIN_SRC R :exports both :results output graphics :file plots/hpdi4.png
+plot_binomial_hpdi(1, 1, 0.5)
 #+END_SRC
 
 #+RESULTS:
-[[https://gist.githubusercontent.com/tmalsburg/202132d78467b1982e45295f0141492c/raw/10f7efccdf79f5ef905afdba5462312122a6e12f/hpdi4.png]]
+[[file:plots/hpdi4.png]]
 
 #+BEGIN_SRC R :exports both :results value output
-binomial.pi(1, 1, 1, 1, 0.5)
+binomial_pi(1, 1, 0.5)
 #+END_SRC
 
 #+RESULTS:
 :      |0.5      0.5| 
 : 0.5000000 0.8660254
 
-#+BEGIN_SRC R :exports both :results output graphics :file pi4.png
-plot.binomial.pi(1, 1, 1, 1, 0.5)
+#+BEGIN_SRC R :exports both :results output graphics :file plots/pi4.png
+plot_binomial_pi(1, 1, 0.5)
 #+END_SRC
 
 #+RESULTS:
-[[https://gist.githubusercontent.com/tmalsburg/202132d78467b1982e45295f0141492c/raw/10f7efccdf79f5ef905afdba5462312122a6e12f/pi4.png]]
+[[file:plots/pi4.png]]
 
 Probability of parameter being larger than 0.5 after seeing 6 successes out of 9 trials with flat prior:
 
 #+BEGIN_SRC R :exports both :results value output
-binomial.prob(6, 9, 1, 1, prob.lower=0.5)
+binomial_prob(6, 9, 0.5)
 #+END_SRC
 
 #+RESULTS:
@@ -147,7 +152,7 @@ binomial.prob(6, 9, 1, 1, prob.lower=0.5)
 Probability of parameter being larger than 0.5 after seeing 6 successes out of 9 trials with prior assuming one earlier success and one earlier failure:
 
 #+BEGIN_SRC R :exports both :results value output
-binomial.prob(6, 9, 2, 2, 0.5)
+binomial_prob(6, 9, 0.5, prior_shape1=2, prior_shape2=2)
 #+END_SRC
 
 #+RESULTS:
@@ -156,7 +161,7 @@ binomial.prob(6, 9, 2, 2, 0.5)
 Probability of parameter being smaller than 0.5 after seeing 6 successes out of 9 trials with prior assuming one earlier success and one earlier failure:
 
 #+BEGIN_SRC R :exports both :results value output
-binomial.prob(6, 9, 2, 2, prob.upper=0.5)
+binomial_prob(6, 9, prob_upper=0.5, prior_shape1=2, prior_shape2=2)
 #+END_SRC
 
 #+RESULTS:
@@ -165,7 +170,7 @@ binomial.prob(6, 9, 2, 2, prob.upper=0.5)
 Probability of parameter being larger than 0.5 and smaller than 0.75 after seeing 6 successes our of 9 trials:
 
 #+BEGIN_SRC R :exports both :results value output
-binomial.prob(6, 9, 1, 1, 0.5, 0.75)
+binomial_prob(6, 9, 0.5, 0.75)
 #+END_SRC
 
 #+RESULTS:
@@ -173,17 +178,17 @@ binomial.prob(6, 9, 1, 1, 0.5, 0.75)
 
 Plot the same interval:
 
-#+BEGIN_SRC R :exports both :results output graphics :file some_interval.png
-plot.binomial.cri(6, 9, 1, 1, 0.5, 0.75)
+#+BEGIN_SRC R :exports both :results output graphics :file plots/some_interval.png
+plot_binomial_cri(6, 9, 0.5, 0.75)
 #+END_SRC
 
 #+RESULTS:
-[[https://gist.githubusercontent.com/tmalsburg/202132d78467b1982e45295f0141492c/raw/cd619cb0ee3f6dafd96aedb47034dc3413734b6b/some_interval.png]]
+[[file:plots/some_interval.png]]
 
 Probability of parameter being smaller than 0.5 after seeing 6 successes our of 9 trials:
 
 #+BEGIN_SRC R :exports both :results value output
-binomial.prob(6, 9, 1, 1, prob.upper=0.5)
+binomial_prob(6, 9, prob_upper=0.5)
 #+END_SRC
 
 #+RESULTS:
@@ -191,9 +196,9 @@ binomial.prob(6, 9, 1, 1, prob.upper=0.5)
 
 Plot:
 
-#+BEGIN_SRC R :exports both :results output graphics :file some_interval2.png
-plot.binomial.cri(6, 9, 1, 1, prob.upper=0.5)
+#+BEGIN_SRC R :exports both :results output graphics :file plots/some_interval2.png
+plot_binomial_cri(6, 9, prob_upper=0.5)
 #+END_SRC
 
 #+RESULTS:
-[[https://gist.githubusercontent.com/tmalsburg/202132d78467b1982e45295f0141492c/raw/78521127c6c6cb4b11fc0db798af4fbe0559d093/some_interval2.png]]
+[[file:plots/some_interval2.png]]
