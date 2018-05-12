@@ -1,0 +1,15 @@
+Package: binomialCRIs
+Title: Calculate and Plot Binomial Credible Intervals
+Version: 0.1
+Authors@R: person("Titus", "von der Malsburg", email="malsburg@uni-potsdam.de", role=c("aut", "cph", "cre"))
+Author: Titus von der Malsburg [aut, cph, cre]
+Maintainer: Titus von der Malsburg <malsburg@uni-potsdam.de>
+Description: Given data and a prior, the functions in the package calculate and plot credible intervals for the probability of success.
+Depends: R (>= 3.4.4)
+License: GPL-2
+URL: https://github.com/tmalsburg/binomialCRIs
+BugReports: https://github.com/tmalsburg/binomialCRIs/issues
+Encoding: UTF-8
+LazyData: true
+Imports: ggplot2
+RoxygenNote: 6.0.1.9000
