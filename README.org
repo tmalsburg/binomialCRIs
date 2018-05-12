@@ -15,7 +15,7 @@ Note: When plotting to PDF, use the function ~cairo_pdf()~ instead of ~pdf()~ to
 #+BEGIN_SRC R :exports both :results value output
 library(binomialCRIs)
 
-binomial_hpdi(n_successes=6, n_trials=9, prior_shape1=1, prior_shape2=1, prob=0.5)
+binomial_hpdi(n_successes=6, n_trials=9, prob=0.5, prior_shape1=1, prior_shape2=1)
 #+END_SRC
 
 #+RESULTS:
